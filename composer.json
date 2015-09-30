@@ -2,7 +2,7 @@
     "name": "joanvt/l5-media-manager",
     "description": "Creates an amazing user interface for upload media files and manage them",
     "homepage": "https://github.com/JoanVt/L5-media-manager",
-    "keywords": ["laravel","media","manager","file","browser"],
+    "keywords": ["laravel","media","manager","file","browser","package"],
     "authors": [
         {
             "name": "Joan",
