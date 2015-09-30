@@ -15,10 +15,10 @@
     },
     "autoload": {
         "classmap": [
-            "migrations"
+            "database/migrations"
         ],
         "psr-4": {
-            "JoanMedia\\Media\\": "src/"
+            "joanvt\\l5-media-manager\\": "src/"
         }
     }
 }
