@@ -1,4 +1,4 @@
-<?php namespace joanvt/l5-media-manager;
+<?php namespace Joanvt\MediaManager;
 
 class MediaManagerServiceProvider extends ServiceProvider
 {
@@ -10,7 +10,7 @@ class MediaManagerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-			__DIR__.'/../database/migrations' => base_path('database/migrations'),
+			__DIR__.'/../database/migrations' => database_path('migrations'),
 		]);
     }
     /**

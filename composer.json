@@ -18,7 +18,7 @@
             "database/migrations"
         ],
         "psr-4": {
-            "joanvt\\l5-media-manager\\": "src/"
+            "JoanVt\\MediaManager\\": "src/"
         }
     }
 }
