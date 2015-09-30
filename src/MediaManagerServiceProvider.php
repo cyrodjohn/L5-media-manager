@@ -12,7 +12,7 @@ class RapydServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-			__DIR__.'/../database/migrations' => base_path('database/migrations'),
+			__DIR__.'/../database/migrations' => public_path('database/migrations'),
 		]);
     }
     /**
