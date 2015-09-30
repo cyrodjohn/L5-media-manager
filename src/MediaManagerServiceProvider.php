@@ -1,8 +1,6 @@
-<?php namespace Zofe\Rapyd;
-use Illuminate\Html\FormBuilder;
-use Illuminate\Html\HtmlBuilder;
-use Illuminate\Support\ServiceProvider;
-class RapydServiceProvider extends ServiceProvider
+<?php namespace joanvt/l5-media-manager;
+
+class MediaManagerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
@@ -12,7 +10,7 @@ class RapydServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-			__DIR__.'/../database/migrations' => public_path('database/migrations'),
+			__DIR__.'/../database/migrations' => base_path('database/migrations'),
 		]);
     }
     /**
