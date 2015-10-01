@@ -1,5 +1,7 @@
 <?php namespace Joanvt\MediaManager;
 
+use Illuminate\Support\ServiceProvider;
+
 class MediaManagerServiceProvider extends ServiceProvider
 {
     /**
