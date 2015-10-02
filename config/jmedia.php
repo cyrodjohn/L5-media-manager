@@ -2,8 +2,10 @@
 
  return [
 	
-	'media_model'	=>	'Media',
-	'index'			=>	'id'
- 
- 
+	'upload_route'			=>	url('ajax/upload_files/'),
+	'upload_path'			=>	'uploads/'.date('d-m-Y'),
+	'thumbnail_directory'	=>	'thumbnails',
+	'width_thumbnail'		=>	200,
+	'height_thumbnail'		=>	200
+	
  ];
