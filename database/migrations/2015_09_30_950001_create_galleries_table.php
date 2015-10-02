@@ -14,7 +14,7 @@ class CreateGalleriesTable extends Migration
     {
         Schema::create('galleries', function ($table) {
 			$table->increments('id')->unique();
-			$table->name('name');
+			$table->string('name');
 			$table->char('status',1)->default(0);
             $table->timestamps();
 		});

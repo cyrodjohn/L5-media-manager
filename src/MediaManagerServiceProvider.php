@@ -14,6 +14,14 @@ class MediaManagerServiceProvider extends ServiceProvider
         $this->publishes([
 			__DIR__.'/../database/migrations' => database_path('migrations'),
 		]);
+		//assets
+        $this->publishes([__DIR__.'/../public/assets' => public_path('jmedia/assets')], 'assets');
+		
+		//config
+        $this->publishes([__DIR__.'/../config/jmedia.php' => config_path('jmedia.php')], 'config');
+        $this->mergeConfigFrom( __DIR__.'/../config/jmedia.php', 'jmedia');
+		
+		
     }
     /**
      * Register the service provider.

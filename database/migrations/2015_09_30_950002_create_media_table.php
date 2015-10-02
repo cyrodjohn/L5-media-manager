@@ -18,10 +18,10 @@ class CreateMediaTable extends Migration
 			$table->string('path',550);
 			$table->string('description',550);
 			$table->string('ext');
-			$table->integer('gallery_id')->unsigned();
+			$table->integer('gallery_id')->unsigned()->nullable();
 			$table->char('status',1)->default(0);
             $table->timestamps();
-            $table->foreign('gallery_id')->references('gallery')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade')->onUpdate('cascade');
 		});
     }
 
