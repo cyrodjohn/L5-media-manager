@@ -20,7 +20,7 @@ class MediaManager
 	
 	public static function lists($model){
 		
-		self::$upload_route = Config::get('jmedia.upload_route');
+		self::$upload_route = url(Config::get('jmedia.upload_route'));
 		
 		$view = '';
 		
