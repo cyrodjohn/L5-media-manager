@@ -59,16 +59,16 @@ class MediaFilesRequest extends Request {
     public function rules() {
     	
     	return [
-			'upl'	=> 'required|mimes:jpeg,bmp,png,gif|max:2000', // 2 Megas
+			'upl'	=> 'required|image|mimes:jpeg,bmp,png,gif|max:2000', // 2 Megas
 	
 		];
     }
 
     public function messages() {
         return [
-            'upl.required'				=>	'You have to upload some file',
-      			'upl.max'				      =>	'2MB max size',
-      			'upl.mimes'					  =>	'Not a valid file'
+        	'upl.required'				=>	'You have to upload some file',
+      		'upl.max'				      =>	'2MB max size',
+      		'upl.mimes'					  =>	'Not a valid file'
         ];
     }
 	
@@ -89,7 +89,7 @@ use app\Http\Requests\MediaFilesRequest;
 use Config;
 use File;
 use Media;
-
+use Image;
 
 class AjaxController extends Controller {
 
@@ -106,18 +106,24 @@ class AjaxController extends Controller {
     public function index(MediaFilesRequest $request){
 
 		
-		$file = $request->file('upl');
+		$$file = $request->file('upl');
 		
 		if(!$file->isValid()){
 			return abort(405);
 		}
 		
 		if(!file_exists(public_path(Config::get('jmedia.upload_path')))){
-			File::makeDirectory(public_path(Config::get('jmedia.upload_path')), 0775,true);
+			File::makeDirectory(public_path(Config::get('jmedia.upload_path')), 0777,true);
 		}
 		
-		$name = md5(uniqid()).'.'.$file->getClientOriginalExtension();
-		$request->file('upl')->move(public_path(Config::get('jmedia.upload_path')), $name);
+		
+		if(!file_exists(public_path(Config::get('jmedia.upload_path').'/'.Config::get('jmedia.thumbnail_directory')))){
+			File::makeDirectory(public_path(Config::get('jmedia.upload_path').'/'.Config::get('jmedia.thumbnail_directory')), 0777,true);
+		}
+		
+		$name = md5(uniqid()).$file->getClientOriginalName();
+		$request->file('upl')->move(public_path(Config::get('jmedia.upload_path')), $name.'.'.$file->getClientOriginalExtension());
+		
 		
 		
 		Media::create([
@@ -127,6 +133,16 @@ class AjaxController extends Controller {
 			'ext'			=> $file->getClientOriginalExtension(),
 			'status'		=> 'A'
 		]);
+		
+		$width  = Config::get('jmedia.width_thumbnail');
+		$height = Config::get('jmedia.height_thumbnail');
+		
+		$image = Image::make(Config::get('jmedia.upload_path').'/'.$name.'.'.$file->getClientOriginalExtension());
+		
+		$path = public_path(Config::get('jmedia.upload_path').'/'.Config::get('jmedia.thumbnail_directory'));
+		
+		$image->resize($width,$height);
+		$image->save($path.'/'.$name.$width.'x'.$height.'.'.$file->getClientOriginalExtension());
 		
     }
     
@@ -138,8 +154,11 @@ class AjaxController extends Controller {
 ```
  return [
 	
-	'upload_route'	=>	url('ajax/upload_files/'),
-	'upload_path'	=>	'uploads/'.date('d-m-Y')
+	'upload_route'			=>	url('ajax/upload_files/'),
+	'upload_path'			=>	'uploads/'.date('d-m-Y'),
+	'thumbnail_directory'		=>	'thumbnails',
+	'width_thumbnail'		=>	200,
+	'height_thumbnail'		=>	200
 	
  ];
 ```
@@ -149,6 +168,10 @@ class AjaxController extends Controller {
 
 ####Use .htaccess for avoid the execution of some binary files  i.e: 
 ``php_flag engine off``
+
+##### (Image Alias) Intervention dependency
+`` We use "intervention/image": "2.*" dependency for image manipulation. You can also use native PHP  ``
+
 
 
 
