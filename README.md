@@ -143,3 +143,17 @@ class AjaxController extends Controller {
 	
  ];
 ```
+
+
+##Tips:
+
+####Use .htaccess for avoid the execution of some binary files  i.e: 
+``php_flag engine off``
+
+
+
+#To-do List:
+
+ ```
+   -- Add Gallery (Table created but not implemented yet)
+ ```
