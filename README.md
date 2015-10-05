@@ -191,5 +191,6 @@ class AjaxController extends Controller {
 
  ```
    -- Add Gallery (Table created but not implemented yet)
+   -- Delete items
  ```
 
