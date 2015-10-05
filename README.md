@@ -1,6 +1,18 @@
 # Install L5-media-manager
 ##Easy eloquent media manager for Laravel 5.1
 
+# Demo:
+
+#### Add
+<img src="https://cloud.githubusercontent.com/assets/6444260/10274954/97aad228-6b43-11e5-865a-d770aba57530.png" style="vertical-align: text-top">
+
+#### List
+<img src="https://cloud.githubusercontent.com/assets/6444260/10274952/97a5f618-6b43-11e5-9fc2-c5e86000205c.png" style="vertical-align: text-top">
+
+#### Info
+<img src="https://cloud.githubusercontent.com/assets/6444260/10274953/97a890bc-6b43-11e5-9e1c-b1aec3623d92.png" style="vertical-align: text-top">
+
+
 Edit your required dependencies in composer.json:
 `  "joanvt/l5-media-manager": "dev-master"  `
 
@@ -169,14 +181,38 @@ class AjaxController extends Controller {
 ####Use .htaccess for avoid the execution of some binary files  i.e: 
 ``php_flag engine off``
 
-##### (Image Alias) Intervention dependency
+#####(Image Alias) Intervention dependency
 `` We use "intervention/image": "2.*" dependency for image manipulation. You can also use native PHP  ``
 
+#####Create an "isAjax" middleware
 
+```
+	<?php namespace app\Http\Middleware;
+	
+	use Closure;
+	use Illuminate\Contracts\Routing\Middleware;
+	use Illuminate\Http\RedirectResponse;
+	
+	class isAjax implements Middleware {
+	
+		public function handle($request, Closure $next)
+		{
+			if ($request->ajax()){
+				return $next($request);
+			}else{
+				return new RedirectResponse(url('/'));
+			}
+			
+		}
+	}
+
+```
 
 
 #To-do List:
 
  ```
    -- Add Gallery (Table created but not implemented yet)
+   -- Delete items
  ```
+
