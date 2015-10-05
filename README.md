@@ -1,5 +1,5 @@
 # Install L5-media-manager
-##Easy eloquent media manager for Laravel 5.1
+##Easy eloquent media manager for Laravel 5.1 and Bootsrap 3.
 
 # Demo:
 
@@ -45,11 +45,11 @@ class MyMediaClass extends Model {
 
 ####Step 6 - Create your view with our three methodes and include your query in "lists" method:
 ```
-      {!! Joanvt\MediaManager\MediaManager::styles() !!}
-
-      {!!  Joanvt\MediaManager\MediaManager::lists(Media::where('status','A')->orderBy('id','DESC'))  !!}
+	{!! Joanvt\MediaManager\MediaManager::styles() !!}
+	
+	{!!  Joanvt\MediaManager\MediaManager::lists(Media::where('status','A')->orderBy('id','DESC'))  !!}
    
-    	{!! Joanvt\MediaManager\MediaManager::scripts() !!}
+   	{!! Joanvt\MediaManager\MediaManager::scripts() !!}
 ```
 
 
