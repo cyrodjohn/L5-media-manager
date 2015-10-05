@@ -207,6 +207,13 @@ class AjaxController extends Controller {
  ];
 ```
 
+####Step 11 - Create your route listeners (routes.php'
+```
+Route::post('ajax/upload_files', 'AjaxController@index');
+Route::post('ajax/upload_files/delete', 'AjaxController@delete_image');
+```
+
+
 
 ##Tips:
 
@@ -245,6 +252,5 @@ class AjaxController extends Controller {
 
  ```
    -- Add Gallery (Table created but not implemented yet)
-   -- Delete items
  ```
 
