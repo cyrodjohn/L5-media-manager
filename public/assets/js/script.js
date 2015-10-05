@@ -4,6 +4,7 @@ $(function(){
 	
 	x = $('#url-info').attr('data-width')+'x'+$('#url-info').attr('data-height');
 	path = $('#url-info').attr('data-path');
+	thumb_directory = $('#url-info').attr('thumb-data');
 	$('.mediaContainer img').bind({
 		click: function() {
 			src = $(this).attr('src').split('/');
@@ -13,9 +14,11 @@ $(function(){
 			$('#photoInfo').modal();
 			$('#photoInfo .img-info').attr('src',path+'/'+src);
 			$('#url-info').val(path+'/'+src);
+			$('#delbtn').attr('data-del',$(this).attr('data-ref'));
 		}
 	});
-
+	
+	
     var ul = $('#upload ul');
 
     $('#drop a').click(function(){
@@ -87,7 +90,13 @@ $(function(){
 				$(data.context).children('p').children('i').html(x+' <b>'+e+'</b>');
 			});
             data.context.addClass('error');
-        }
+        },
+		done: function(e,data){
+			var resolved = $.parseJSON(data.result);
+			
+			$('.mediaContainer').prepend('<div class="col-xs-2 jmedia-item"><img data-ref="'+resolved.id+'" src="'+path+'/'+thumb_directory+'/'+resolved.name+x+'.'+resolved.ext+'" class="img-responsive"/></div>');
+			
+		}
 
     });
 
