@@ -1,6 +1,18 @@
 # Install L5-media-manager
 ##Easy eloquent media manager for Laravel 5.1
 
+# Demo:
+
+#### Add
+<img src="https://cloud.githubusercontent.com/assets/6444260/10274954/97aad228-6b43-11e5-865a-d770aba57530.png" style="vertical-align: text-top">
+
+#### List
+<img src="https://cloud.githubusercontent.com/assets/6444260/10274952/97a5f618-6b43-11e5-9fc2-c5e86000205c.png" style="vertical-align: text-top">
+
+#### Info
+<img src="https://cloud.githubusercontent.com/assets/6444260/10274953/97a890bc-6b43-11e5-9e1c-b1aec3623d92.png" style="vertical-align: text-top">
+
+
 Edit your required dependencies in composer.json:
 `  "joanvt/l5-media-manager": "dev-master"  `
 
@@ -180,3 +192,4 @@ class AjaxController extends Controller {
  ```
    -- Add Gallery (Table created but not implemented yet)
  ```
+
