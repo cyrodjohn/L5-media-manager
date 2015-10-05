@@ -181,10 +181,32 @@ class AjaxController extends Controller {
 ####Use .htaccess for avoid the execution of some binary files  i.e: 
 ``php_flag engine off``
 
-##### (Image Alias) Intervention dependency
+#####(Image Alias) Intervention dependency
 `` We use "intervention/image": "2.*" dependency for image manipulation. You can also use native PHP  ``
 
+#####Create an "isAjax" middleware
 
+```
+	<?php namespace app\Http\Middleware;
+	
+	use Closure;
+	use Illuminate\Contracts\Routing\Middleware;
+	use Illuminate\Http\RedirectResponse;
+	
+	class isAjax implements Middleware {
+	
+		public function handle($request, Closure $next)
+		{
+			if ($request->ajax()){
+				return $next($request);
+			}else{
+				return new RedirectResponse(url('/'));
+			}
+			
+		}
+	}
+
+```
 
 
 #To-do List:
