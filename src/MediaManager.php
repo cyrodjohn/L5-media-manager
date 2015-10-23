@@ -42,12 +42,19 @@ class MediaManager
 		}
 		
 		if($model){
-			$view .='<div class="mediaContainer">';
+			$view .='<div class="mediaContainer"><div class="row">';
 			foreach ($model as $item){
-				$view .= '<div class="col-xs-2 jmedia-item"><img data-ref="'.$item->id.'" src="'.url($item->path.'/'.Config::get('jmedia.thumbnail_directory').'/'.$item->name.Config::get('jmedia.width_thumbnail').'x'.Config::get('jmedia.height_thumbnail').'.'.$item->ext).'" class="img-responsive"/></div>';
+				$view .= '<div class="col-xs-6 col-sm-4 col-md-2 jmedia-item">
+					<div class="hover ehover13"><img data-ref="'.$item->id.'" src="'.url($item->path.'/'.Config::get('jmedia.thumbnail_directory').'/'.$item->name.Config::get('jmedia.width_thumbnail').'x'.Config::get('jmedia.height_thumbnail').'.'.$item->ext).'" class="img-responsive" path-dir="'.url($item->path).'"/>
+				<div class="overlay">
+						<h2><span class="glyphicon glyphicon-search" aria-hidden="true"></span></h2>
+					</button>
+					</div>	
+				</div>
+				</div>';
 			}
 			$view .='<div class="clearfix"></div>';
-			$view .='</div>';
+			$view .='</div></div>';
 		}
 		
 		$view .= $model->render();
