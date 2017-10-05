@@ -1,6 +1,6 @@
 <?php namespace Joanvt\MediaManager;
 
-use Illuminate\Html\HtmlFacade as HTML;
+use Collective\Html\HtmlFacade as HTML;
 use Config;
 use Lang;
 
